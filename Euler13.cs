@@ -23,6 +23,11 @@ class Euler13
 	static void Main(string[] args)
 	{
 		string uniformInput = Inputs.GetUniformInputFromArgs(args);
+		if (uniformInput == null)
+		{
+			Console.WriteLine("Error: null or invalid input");
+			return;
+		}
 		string fullSumString = "";
 		string carryString = "";
 
