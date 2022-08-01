@@ -13,14 +13,13 @@ class Euler13
 	//        -> InputNumbers <= ~41,297,762 (maybe)
 	//        -> Though actually apparently there's a 2gb limit, so more like:
 	//           -> InputNumbers <= ~20,648,881 ~= 1,073,741,823 / 52 (cf. https://stackoverflow.com/questions/140468/)
-	//    - I've tested it with 20,000,000 lines of 50-digit chars. It works great - but generating the inputs takes forever (actually, way better w stringbuilder. Dumping output takes forever though!).
-	//        - I will not test it with 41 million numbers. Probably
-	//        - I probably will actually, maybe using Stringbuilder in main algo though? Might not be useful actually
+	//    - Have now tested boundaries - expected OOM occurred at 20648881 numbers, while 20648880 numbers succeeded.
 	//TODO: given we don't modify the input, we can probs unsafe access it for more speeeed https://stackoverflow.com/questions/13179554/is-it-faster-to-access-char-in-string-via-operator-or-faster-to-access-char-i
 	// - uses the euler13 list as input if no args (or invalid args) supplied; or if an int is supplied, generates that many 50-digit numbers and uses that as input
 	// - in addition to dumping the euler13 expected output (first 10 digits of sum), also dumps the full sum, and the randomly generated input (if used) so you can verify the solution externally.
 	//TODO: stringbuilders. Added to generator so far. May not bring that much efficiency elsewhere
 	//TODO: generalise to arbitrary width too?????
+	//TODO: stream line-by-line (or generated num by generated num) to avoid OOM exceptions, giving us even fewer limits
 	static void Main(string[] args)
 	{
 		string uniformInput = Inputs.GetUniformInputFromArgs(args);
