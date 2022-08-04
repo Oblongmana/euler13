@@ -7,6 +7,7 @@ Calculate the sum of extremely chonky numbers
 - [Externally Verifying Sums, viewing inputs, etc](#externally-verifying-sums-viewing-inputs-etc)
 - [Optimisation, testing etc scratchpad](#optimisation-testing-etc-scratchpad)
   - [Testing](#testing)
+  - [Optimization notes on frequently used helper/readability functions](#optimization-notes-on-frequently-used-helperreadability-functions)
   - [Limit Pushing/Testing](#limit-pushingtesting)
     - [Testing the Sum limit?](#testing-the-sum-limit)
       - [Powers of 10? Approach 1](#powers-of-10-approach-1)
@@ -55,7 +56,7 @@ Far from exhaustive, just a few things noted while trying to cut time down and e
 General testing done against a 10 mil x 50 digit test, in NO_INTERMEDIATE_OUTPUT mode.
  https://dotnetfiddle.net/KW7EW4 can do convenient benching too
 
-##Opt. notes on frequently used helper/readability functions
+## Optimization notes on frequently used helper/readability functions
  - LeastSignificantDigit: use [len-1] instead of Linq's .Last(). Went from ~12s to ~8.7s in std benchmark!
  - DropLeastSignificantDigit: removed Length safety check. Went from ~9.5s to 8.75s in std bench
  - The char adding loop - Shortcut on differing sizes. Went from ~8.88s to ~8.37s in std bench. ~0.5s, and vaguely looks like the range of total times is a bit tighter now
