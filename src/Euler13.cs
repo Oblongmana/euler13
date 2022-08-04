@@ -16,7 +16,7 @@ class Euler13
 	// - streaming input (and random generation if using that option instead), so we can have truly huge inputs
 	//
 	// - Input methods:
-	//    - if an int is supplied, uses a stream of that many 50-digit random numbers for input
+	//    - if an int is supplied, generates a stream of that many random numbers for input. If a second int is supplied, that determines number width, otherwise numbers are 50 wide.
 	//    - can accept a file path for streaming input.
 	//    - uses the euler13 list as input if no args supplied.
 	// - So our only limit is therefore that Total Sum (and any individual input number) must have <= ~2^30 significant figures in it
@@ -29,7 +29,6 @@ class Euler13
 	// - Have externally verified the validity of various results: 1 million x 50 digit numbers, 2 x 1 million digit numbers, Millionth triangle number, etc. Some examples can be plugged in out of the `examples` directory
 
 	//TODO: the ultimate optimisation would probably be to write `unsafe` code to mutate the sum string. Dispensing with GnarlyStrings would be nice. Could be a fun aside at some point
-	//TODO: Maybe generalise the random generation to also allow GENERATING arbitrary width as well? We can now handle
 	//TODO CLI help
 	//TODO allow reporting mode setting from args
 
