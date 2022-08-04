@@ -8,6 +8,7 @@ Calculate the sum of extremely chonky numbers
 - [Optimisation, testing etc scratchpad](#optimisation-testing-etc-scratchpad)
   - [Testing](#testing)
   - [Optimization notes on frequently used helper/readability functions](#optimization-notes-on-frequently-used-helperreadability-functions)
+  - [Data Structures](#data-structures)
   - [Limit Pushing/Testing](#limit-pushingtesting)
     - [Testing the Sum limit?](#testing-the-sum-limit)
       - [Powers of 10? Approach 1](#powers-of-10-approach-1)
@@ -65,6 +66,23 @@ General testing done against a 10 mil x 50 digit test, in NO_INTERMEDIATE_OUTPUT
      This saves a little computation any time the fullSum is longer than the inputLine (most of the time when adding same-length digits!), and saves a lot
      when adding mixed-length source digits
 
+## Data Structures
+See GnarlyStrings.cs
+
+Some unorganised notes:
+ - Bottlenecks with the strings were really just about how to reason about them
+    - It's easier to think about adding a number to the left, and to index. You can solve by simply appended and then reversing the final result, but that code is hard to read
+    - Additional, strings are immutable, so when adding another number to the running sum, I can't simply modify the char at an index, and I DEFINITELY don't want to allocate another giant string
+    - For tracking the running sum:
+        - Added a `MutableReverseIndexedPrependOptimisedString` (incredible naming, I know) - which just does what I said above and hides it
+        - It keeps an internal `List<char>` in reverse order
+        - so prepending is just appending so is O(1). There's helpers for prepending char/string/another gnarly type
+        - I want to treat the right-most digit as index 0 anyway, so that solves that issue
+        - strings are immutable, but that issue is also solved by our List<char>
+    - For input lines
+        - Added `ReverseIndexedString`
+        - This is purely to help with reasoning - it just holds the string and gives an indexer that inverts the numbers, so [len-1] is the last char of the string, and 0 is the first
+        - Now, [0] is the right-most char in both the running sum and the input lines
 ## Limit Pushing/Testing
 
 ### Testing the Sum limit?
