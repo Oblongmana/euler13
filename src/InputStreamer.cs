@@ -16,7 +16,7 @@ class InputStreamer
 	public InputStreamer(ProgressReporter progressReporter) => this.progressReporter = progressReporter;
 
 
-	public IEnumerable<string> GetStreamingInputFromArgs(string[] args)
+	public (bool, IEnumerable<string>) GetStreamingInputFromArgs(string[] args)
 	{
 		IEnumerable<string> numberListInput = null;
 		string cliInput;
@@ -47,7 +47,7 @@ class InputStreamer
 			help.Add("        Various poorly named other generators are available, such as Pow10Generator, or ArbitraryLength9sPlus1. Examine the code for these.");
 			help.Add("    dotnet run help");
 			help.Add("        Shows this help screen! Congrats, you did it!");
-			return help;
+			return (true, help);
 		}
 
 		//If a special generator is indicated by user, use that
@@ -104,7 +104,7 @@ class InputStreamer
 			progressReporter.ReportArbitraryGenerationStart("ArbitraryNumLines", numLinesToGenerate, digitsPerLine);
 		}
 
-		return numberListInput;
+		return (false, numberListInput);
 	}
 
 	private IEnumerable<string> ArbitraryNumLines(int numLines, int digitsPerLine)

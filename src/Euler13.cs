@@ -40,14 +40,14 @@ class Euler13
 
 		//Begin parsing/generating input
 		InputStreamer inputStreamer = new InputStreamer(progressReporter);
-		IEnumerable<string> streamingInput = inputStreamer.GetStreamingInputFromArgs(args);
+		(bool helpMode, IEnumerable<string> streamingInput) = inputStreamer.GetStreamingInputFromArgs(args);
 
 		if (streamingInput == null)
 		{
 			Console.WriteLine("Error: null or invalid input");
 			return;
 		}
-		else if (streamingInput.Any() && streamingInput.First() == InputStreamer.HELP_OUTPUT_IDENTIFIER)
+		else if (helpMode)
 		{
 			foreach (string helpLine in streamingInput)
 			{
@@ -65,15 +65,13 @@ class Euler13
 
 		//We're going to do classroom column-summing, carrying remainders over and all. This lets us sum huge numbers that
 		//  well exceed C# numeric types' ability to hold the actual nubmers. We're limited only by string length maximums.
-
-		//Set initial state to be the first line. We're not going to validate inputs. Simply provide valid inputs :)
+		//We're not going to validate inputs. Simply provide valid inputs :)
 		//NB: not using StringBuilder here - performance impact of massively repeated index-based access on a StringBuilder is probably worse than using our
 		//    own simple data structure backed by a mutable list of chars. Have not tested that theory - but the docs VERY much warn against index-access on string builders
-		MutableReverseIndexedPrependOptimisedString fullSum = new MutableReverseIndexedPrependOptimisedString(streamingInput.Take(1).FirstOrDefault());
-		progressReporter.ReportProcessingInputNumber(fullSum);
+		MutableReverseIndexedPrependOptimisedString fullSum = new MutableReverseIndexedPrependOptimisedString("");
 
 		//Add each line to the full sum one at a time - streaming avoids memory issues from holding the entire series of numbers at once
-		foreach (ReverseIndexedString inputLine in streamingInput.Skip(1).Select(str => new ReverseIndexedString(str))) //skip first line as we already used it as our start value
+		foreach (ReverseIndexedString inputLine in streamingInput.Select(str => new ReverseIndexedString(str))) //skip first line as we already used it as our start value
 		{
 			progressReporter.ReportProcessingInputNumber(inputLine);
 
