@@ -4,6 +4,7 @@ Calculate the sum of extremely chonky numbers
 
 - [Euler 13 ++](#euler-13-)
 - [Help Contents](#help-contents)
+- [Externally Verifying Sums, viewing inputs, etc](#externally-verifying-sums-viewing-inputs-etc)
 - [Optimisation, testing etc scratchpad](#optimisation-testing-etc-scratchpad)
   - [Testing](#testing)
   - [Limit Pushing/Testing](#limit-pushingtesting)
@@ -33,6 +34,18 @@ Input Options
     dotnet run help
         Shows this help screen! Congrats, you did it!
 ```
+
+# Externally Verifying Sums, viewing inputs, etc
+You can't do this at the command line without modifying the code yet.
+
+The good news is, line one of `Main` in `Euler13.cs` has a reporting mode
+you can set, to `DUMP_VALUES`. You probably want to redirect this to a file instead of dumping to terminal, your terminal will probably
+explode. e.g. `dotnet run 100000 100000 > dump.txt` will dump 100000 x 100000 character numbers and their summary info to a file
+
+Note that for giant numbers (> 10 Million chars in the total sum), you'll need to uncomment the line in `ProgressReporter.cs` to also
+output the full sum.
+
+There's also a mode called `REPORT_PROGRESS` if you want to see a progress percentage and counter, but this SIGNIFICANTLY impacts performance.
 
 # Optimisation, testing etc scratchpad
 

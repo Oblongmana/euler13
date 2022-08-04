@@ -79,6 +79,7 @@ class ProgressReporter
 		Console.WriteLine($"Up to first 10 digits of Sum         : {fullSum.UpToFirstNDigits(10)}");
 		Console.WriteLine($"Total Digits in Sum                  : {fullSum.Length}");
 		Console.WriteLine($"Up to first 10 Million Digits of Sum : {fullSum.UpToFirstNDigits(10000000)}");
+		// Console.WriteLine($"Full Sum                             : {fullSum}");
 	}
 
 }
