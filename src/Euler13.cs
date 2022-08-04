@@ -29,7 +29,6 @@ class Euler13
 	// - Have externally verified the validity of various results: 1 million x 50 digit numbers, 2 x 1 million digit numbers, Millionth triangle number, etc. Some examples can be plugged in out of the `examples` directory
 
 	//TODO: the ultimate optimisation would probably be to write `unsafe` code to mutate the sum string. Dispensing with GnarlyStrings would be nice. Could be a fun aside at some point
-	//TODO CLI help
 	//TODO allow reporting mode setting from args
 
 	static void Main(string[] args)
@@ -71,7 +70,7 @@ class Euler13
 		MutableReverseIndexedPrependOptimisedString fullSum = new MutableReverseIndexedPrependOptimisedString("");
 
 		//Add each line to the full sum one at a time - streaming avoids memory issues from holding the entire series of numbers at once
-		foreach (ReverseIndexedString inputLine in streamingInput.Select(str => new ReverseIndexedString(str))) //skip first line as we already used it as our start value
+		foreach (ReverseIndexedString inputLine in streamingInput.Select(str => new ReverseIndexedString(str)))
 		{
 			progressReporter.ReportProcessingInputNumber(inputLine);
 
