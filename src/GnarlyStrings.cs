@@ -52,7 +52,7 @@ namespace GnarlyStrings
 	}
 
 	/// <summary>
-	/// Convenience class for readably reverse-indexing a string: [0] is the last char, [length] is the first char
+	/// Convenience class for readably reverse-indexing a string: [0] is the last char, [length-1] is the first char
 	/// </summary>
 	class ReverseIndexedString
 	{
